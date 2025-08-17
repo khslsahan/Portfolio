@@ -13,26 +13,26 @@ export class ContactComponent implements OnInit {
 
   socialLinks = [
     {
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/sahan-lakshitha-168792167/',
+      icon: 'fab fa-linkedin',
+      color: '#0077b5'
+    },
+    {
       name: 'GitHub',
       url: 'https://github.com/khslsahan',
       icon: 'fab fa-github',
       color: '#333'
     },
     {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/sahanlakshitha',
-      icon: 'fab fa-linkedin',
-      color: '#0077b5'
-    },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/sahanlakshitha',
-      icon: 'fab fa-twitter',
-      color: '#1da1f2'
+      name: 'HackerRank',
+      url: 'https://hackerrank.com/sahanbcsrh',
+      icon: 'fas fa-code',
+      color: '#00ea64'
     },
     {
       name: 'Email',
-      url: 'mailto:sahan@example.com',
+      url: 'mailto:sahanbcsrh@gmail.com',
       icon: 'fas fa-envelope',
       color: '#ea4335'
     }
@@ -87,5 +87,21 @@ export class ContactComponent implements OnInit {
 
   openSocialLink(url: string): void {
     window.open(url, '_blank');
+  }
+
+  scrollToContact(): void {
+    // Scroll to the contact form
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToEducation(): void {
+    // Scroll to the about section which contains education info
+    const aboutSection = document.querySelector('.about-me');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

@@ -21,7 +21,7 @@
             </div>
             <div class="contact-text">
               <h4>Location</h4>
-              <p>Colombo, Sri Lanka</p>
+              <p>49A/149, Hansagiri road, 5th Lane, 11000 Gampaha, Sri Lanka</p>
             </div>
           </div>
           
@@ -31,7 +31,7 @@
             </div>
             <div class="contact-text">
               <h4>Email</h4>
-              <p>sahan@example.com</p>
+              <p>sahanbcsrh@gmail.com</p>
             </div>
           </div>
           
@@ -41,13 +41,13 @@
             </div>
             <div class="contact-text">
               <h4>Phone</h4>
-              <p>+94 71 234 5678</p>
+              <p><a href="tel:+94713327794" class="phone-link">+94 71 332 7794</a></p>
             </div>
           </div>
         </div>
         
         <div class="social-links">
-          <h4>Follow Me</h4>
+          <h4>Connect With Me</h4>
           <div class="social-icons">
             <button 
               *ngFor="let social of socialLinks" 
@@ -64,6 +64,17 @@
       
       <!-- Contact Form -->
       <div class="contact-form" data-aos="fade-left">
+        <div class="action-buttons">
+          <button class="action-btn contact-btn" (click)="scrollToContact()">
+            <i class="fas fa-phone"></i>
+            CONTACT ME
+          </button>
+          <button class="action-btn education-btn" (click)="scrollToEducation()">
+            <i class="fas fa-graduation-cap"></i>
+            EDUCATION
+          </button>
+        </div>
+        
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="name">Full Name *</label>
