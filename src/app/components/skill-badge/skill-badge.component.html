@@ -1,0 +1,14 @@
+<div class="skill-badge">
+  <div class="skill-icon" [style.color]="skill.color">
+    <i [class]="skill.icon"></i>
+  </div>
+  <div class="skill-info">
+    <span class="skill-name">{{ skill.name }}</span>
+    <div class="skill-level">
+      <div class="level-bar">
+        <div class="level-fill" [style.width.%]="skill.level" [style.background-color]="skill.color"></div>
+      </div>
+      <span class="level-text">{{ skill.level }}%</span>
+    </div>
+  </div>
+</div>

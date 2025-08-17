@@ -1,0 +1,71 @@
+<div class="about-container" data-aos="fade-up">
+  <div class="about-content">
+    <div class="section-header">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Get to know me better</p>
+    </div>
+    
+    <div class="about-grid">
+      <div class="about-text" data-aos="fade-right">
+        <div class="bio-section">
+          <h3 class="bio-title">Senior Software Engineer</h3>
+          
+          <p class="bio-text">
+            I'm a passionate Senior Software Engineer specializing in Kotlin, Spring Boot, and modern web technologies. 
+            With a strong foundation in both frontend and backend development, I love creating innovative solutions 
+            that solve real-world problems at scale.
+          </p>
+          
+          <p class="bio-text">
+            My journey in software development started at the University of Ruhuna where I graduated with a Bachelor of 
+            Computer Science (Special) with a GPA of 3.58. I've architected and delivered enterprise-level projects including 
+            AI-powered sales agents, high-performance URL resolution systems, and SD-WAN management platforms, gaining 
+            deep expertise in Docker, Kubernetes, and cloud-native technologies.
+          </p>
+          
+          <p class="bio-text">
+            I'm passionate about clean code, system architecture, and staying current with industry trends. When I'm not coding, 
+            you can find me participating in hackathons, contributing to open-source projects, or mentoring fellow developers.
+          </p>
+        </div>
+        
+        <div class="quick-info">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Gampaha, Sri Lanka</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>BSc Computer Science - University of Ruhuna</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-briefcase"></i>
+            <span>2+ Years Experience</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skills-section" data-aos="fade-left">
+        <h3 class="skills-title">Technical Skills</h3>
+        
+        <div class="skills-categories">
+          <div class="skill-category" *ngFor="let category of ['frontend', 'backend', 'database', 'devops', 'ai-ml']">
+            <h4 class="category-title">{{ category | titlecase }}</h4>
+            <div class="skills-list">
+              <div class="skill-item" *ngFor="let skill of getSkillsByCategory(category)">
+                <div class="skill-header">
+                  <i [class]="skill.icon" [style.color]="skill.color"></i>
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-level">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" [style.width.%]="skill.level" [style.background-color]="skill.color"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

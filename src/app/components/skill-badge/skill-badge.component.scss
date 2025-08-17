@@ -1,0 +1,114 @@
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .skill-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .skill-info {
+    flex: 1;
+    
+    .skill-name {
+      display: block;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+    
+    .skill-level {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      .level-bar {
+        flex: 1;
+        height: 8px;
+        background: #f1f3f4;
+        border-radius: 4px;
+        overflow: hidden;
+        
+        .level-fill {
+          height: 100%;
+          border-radius: 4px;
+          transition: width 1s ease-in-out;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+          }
+        }
+      }
+      
+      .level-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6c757d;
+        min-width: 35px;
+        text-align: right;
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .skill-badge {
+    padding: 12px;
+    gap: 12px;
+    
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+    
+    .skill-info {
+      .skill-name {
+        font-size: 0.9rem;
+      }
+      
+      .skill-level {
+        .level-bar {
+          height: 6px;
+        }
+        
+        .level-text {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<div class="project-card" [class.flipped]="isFlipped" (click)="toggleFlip()">
+  <div class="card-inner">
+    <!-- Front of card -->
+    <div class="card-front">
+      <div class="card-header">
+        <div class="category-badge" [style.background-color]="getCategoryColor(project.category)">
+          <i [class]="getCategoryIcon(project.category)"></i>
+          <span>{{ project.category | titlecase }}</span>
+        </div>
+        <div class="featured-badge" *ngIf="project.featured">
+          <i class="fas fa-star"></i>
+          Featured
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <h3 class="project-title">{{ project.name }}</h3>
+        <p class="project-description">{{ project.description }}</p>
+        
+        <div class="tech-stack">
+          <span 
+            *ngFor="let tech of project.tech.slice(0, 3)" 
+            class="tech-tag"
+          >
+            {{ tech }}
+          </span>
+          <span *ngIf="project.tech.length > 3" class="tech-tag more">
+            +{{ project.tech.length - 3 }} more
+          </span>
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <div class="flip-hint">
+          <i class="fas fa-hand-pointer"></i>
+          Click to see more
+        </div>
+      </div>
+    </div>
+    
+    <!-- Back of card -->
+    <div class="card-back">
+      <div class="back-header">
+        <h3 class="project-title">{{ project.name }}</h3>
+        <button class="close-btn" (click)="toggleFlip()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="back-body">
+        <p class="project-description">{{ project.description }}</p>
+        
+        <div class="full-tech-stack">
+          <h4>Technologies Used:</h4>
+          <div class="tech-grid">
+            <span *ngFor="let tech of project.tech" class="tech-tag full">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="project-links">
+          <a 
+            [href]="project.github" 
+            target="_blank" 
+            class="project-link github"
+            (click)="$event.stopPropagation()"
+          >
+            <i class="fab fa-github"></i>
+            View Code
+          </a>
+          
+          <a 
+            *ngIf="project.demo" 
+            [href]="project.demo" 
+            target="_blank" 
+            class="project-link demo"
+            (click)="$event.stopPropagation()"
+          >
+            <i class="fas fa-external-link-alt"></i>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

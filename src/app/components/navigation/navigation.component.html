@@ -1,0 +1,57 @@
+<nav class="navbar" [class.scrolled]="true">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="#hero" (click)="onScrollToSection('hero')">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name">Sahan Lakshitha</span>
+            <span class="logo-title">Software Engineer</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-menu" [class.active]="isMenuOpen">
+      <a href="#about" (click)="onScrollToSection('about')" class="nav-link">
+        <i class="fas fa-user-tie"></i>
+        <span>About</span>
+      </a>
+      <a href="#projects" (click)="onScrollToSection('projects')" class="nav-link">
+        <i class="fas fa-rocket"></i>
+        <span>Projects</span>
+      </a>
+      <a href="#experience" (click)="onScrollToSection('experience')" class="nav-link">
+        <i class="fas fa-briefcase"></i>
+        <span>Experience</span>
+      </a>
+      <a href="#contact" (click)="onScrollToSection('contact')" class="nav-link">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for opportunities</span>
+      </div>
+      
+      <!-- Performance Loading Indicator -->
+      <div class="performance-indicator" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+        <span class="loading-text">Loading...</span>
+      </div>
+      
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="'Switch to ' + (currentTheme === 'light' ? 'dark' : 'light') + ' theme'">
+        <i class="fas" [class.fa-moon]="currentTheme === 'light'" [class.fa-sun]="currentTheme === 'dark'"></i>
+      </button>
+      
+      <button class="mobile-menu-toggle" (click)="toggleMenu()" [attr.aria-label]="'Toggle navigation menu'">
+        <span class="hamburger" [class.active]="isMenuOpen"></span>
+      </button>
+    </div>
+  </div>
+</nav>

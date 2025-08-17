@@ -1,0 +1,83 @@
+<div class="footer-container">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <span class="logo-text">SL</span>
+        </div>
+        <p class="brand-description">
+          Software Engineer passionate about creating innovative solutions and turning ideas into reality.
+        </p>
+        <div class="social-links">
+          <a href="https://github.com/khslsahan" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/sahanlakshitha" target="_blank" class="social-link">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com/sahanlakshitha" target="_blank" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="mailto:sahan@example.com" class="social-link">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="links-list">
+          <li><a href="#about" (click)="scrollToSection('about')">About Me</a></li>
+          <li><a href="#projects" (click)="scrollToSection('projects')">Projects</a></li>
+          <li><a href="#experience" (click)="scrollToSection('experience')">Experience</a></li>
+          <li><a href="#contact" (click)="scrollToSection('contact')">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Services -->
+      <div class="footer-services">
+        <h3 class="footer-title">Services</h3>
+        <ul class="services-list">
+          <li>Web Development</li>
+          <li>Mobile Apps</li>
+          <li>AI/ML Solutions</li>
+          <li>UI/UX Design</li>
+        </ul>
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <h3 class="footer-title">Contact Info</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Colombo, Sri Lanka</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>sahan@example.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+94 71 234 5678</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-line"></div>
+      <div class="bottom-content">
+        <p class="copyright">
+          © {{ currentYear }} Sahan Lakshitha. All rights reserved.
+        </p>
+        <button class="scroll-top-btn" (click)="scrollToTop()" aria-label="Scroll to top">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

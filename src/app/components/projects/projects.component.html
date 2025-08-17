@@ -1,0 +1,38 @@
+<div class="projects-container" data-aos="fade-up">
+  <div class="projects-content">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Check out some of my recent work</p>
+    </div>
+    
+    <div class="category-filters" data-aos="fade-up" data-aos-delay="200">
+      <div class="filter-buttons">
+        <button 
+          *ngFor="let category of categories" 
+          class="filter-btn" 
+          [class.active]="selectedCategory === category.value"
+          (click)="filterByCategory(category.value)"
+        >
+          {{ category.label }}
+          <span class="project-count">({{ getProjectCount(category.value) }})</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="projects-grid" data-aos="fade-up" data-aos-delay="400">
+      <app-project-card 
+        *ngFor="let project of filteredProjects; trackBy: trackByProjectId" 
+        [project]="project"
+        class="project-card"
+      ></app-project-card>
+    </div>
+    
+    <div class="projects-cta" data-aos="fade-up" data-aos-delay="600">
+      <p class="cta-text">Interested in seeing more of my work?</p>
+      <a href="https://github.com/khslsahan" target="_blank" class="github-link">
+        <i class="fab fa-github"></i>
+        Visit My GitHub
+      </a>
+    </div>
+  </div>
+</div>

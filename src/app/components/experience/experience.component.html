@@ -1,0 +1,102 @@
+<div class="experience-container" data-aos="fade-up">
+  <div class="experience-content">
+    <div class="section-header">
+      <h2 class="section-title">Experience & Education</h2>
+      <p class="section-subtitle">My professional journey and academic background</p>
+    </div>
+    
+    <div class="experience-sections">
+      <!-- Work Experience -->
+      <div class="experience-section" data-aos="fade-right">
+        <h3 class="section-title">
+          <i class="fas fa-briefcase"></i>
+          Work Experience
+        </h3>
+        
+        <div class="timeline">
+          <div 
+            *ngFor="let experience of getWorkExperiences(); let i = index" 
+            class="timeline-item"
+            [attr.data-aos]="'fade-up'"
+            [attr.data-aos-delay]="i * 200"
+          >
+            <div class="timeline-marker" [style.background-color]="experience.color">
+              <i [class]="experience.icon"></i>
+            </div>
+            
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h4 class="job-title">{{ experience.title }}</h4>
+                <div class="company-info">
+                  <span class="company-name">{{ experience.company }}</span>
+                  <span class="period">{{ experience.period }}</span>
+                </div>
+              </div>
+              
+              <p class="job-description">{{ experience.description }}</p>
+              
+              <div class="technologies">
+                <span 
+                  *ngFor="let tech of experience.technologies" 
+                  class="tech-tag"
+                >
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Education -->
+      <div class="experience-section" data-aos="fade-left">
+        <h3 class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          Education
+        </h3>
+        
+        <div class="timeline">
+          <div 
+            *ngFor="let education of getEducationExperiences(); let i = index" 
+            class="timeline-item"
+            [attr.data-aos]="'fade-up'"
+            [attr.data-aos-delay]="i * 200"
+          >
+            <div class="timeline-marker" [style.background-color]="education.color">
+              <i [class]="education.icon"></i>
+            </div>
+            
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h4 class="degree-title">{{ education.title }}</h4>
+                <div class="institution-info">
+                  <span class="institution-name">{{ education.company }}</span>
+                  <span class="period">{{ education.period }}</span>
+                </div>
+              </div>
+              
+              <p class="degree-description">{{ education.description }}</p>
+              
+              <div class="technologies">
+                <span 
+                  *ngFor="let tech of education.technologies" 
+                  class="tech-tag"
+                >
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="experience-cta" data-aos="fade-up">
+      <p class="cta-text">Interested in working together?</p>
+      <a href="#contact" class="cta-button">
+        <i class="fas fa-envelope"></i>
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</div>
