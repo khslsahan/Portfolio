@@ -75,18 +75,24 @@
           </button>
         </div>
         
+        <!-- Unified Message Display -->
+        <div class="message-display" *ngIf="message" [class]="'message-' + messageType">
+          <i [class]="messageType === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
+          {{ message }}
+        </div>
+        
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="name">Full Name *</label>
+            <label for="fullName">Full Name *</label>
             <input 
               type="text" 
-              id="name" 
-              formControlName="name"
+              id="fullName" 
+              formControlName="fullName"
               placeholder="Enter your full name"
-              [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+              [class.error]="contactForm.get('fullName')?.invalid && contactForm.get('fullName')?.touched"
             >
-            <div class="error-message" *ngIf="getFieldError('name')">
-              {{ getFieldError('name') }}
+            <div class="error-message" *ngIf="getFieldError('fullName')">
+              {{ getFieldError('fullName') }}
             </div>
           </div>
           
@@ -147,11 +153,6 @@
             </span>
           </button>
         </form>
-        
-        <div class="success-message" *ngIf="submitSuccess">
-          <i class="fas fa-check-circle"></i>
-          Thank you! Your message has been sent successfully.
-        </div>
       </div>
     </div>
   </div>

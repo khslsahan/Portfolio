@@ -25,6 +25,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 // Services - Only essential ones
 import { ThemeService } from './services/theme.service';
+import { ContactService } from './services/contact.service';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +54,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    ThemeService
+    ThemeService,
+    ContactService
   ],
   bootstrap: [AppComponent]
 })

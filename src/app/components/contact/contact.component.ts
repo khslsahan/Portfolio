@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactService, ContactForm } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactComponent implements OnInit {
   contactForm: FormGroup;
   isSubmitting = false;
-  submitSuccess = false;
+  message = '';
+  messageType: 'success' | 'error' | '' = '';
 
   socialLinks = [
     {
@@ -38,9 +40,12 @@ export class ContactComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService
+  ) {
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      fullName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', [Validators.required, Validators.minLength(5)]],
       message: ['', [Validators.required, Validators.minLength(10)]]
@@ -48,29 +53,59 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Lightweight initialization - no subscriptions
   }
 
-  onSubmit(): void {
-    if (this.contactForm.valid) {
-      this.isSubmitting = true;
-      
-      // Simulate form submission
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.submitSuccess = true;
-        this.contactForm.reset();
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          this.submitSuccess = false;
-        }, 5000);
-      }, 2000);
+  async onSubmit(): Promise<void> {
+    if (this.contactForm.invalid || this.isSubmitting) {
+      return;
     }
+
+    this.isSubmitting = true;
+    this.clearMessage();
+
+    try {
+      const formData: ContactForm = {
+        fullName: this.contactForm.get('fullName')?.value || '',
+        email: this.contactForm.get('email')?.value || '',
+        subject: this.contactForm.get('subject')?.value || '',
+        message: this.contactForm.get('message')?.value || ''
+      };
+
+      const result = await this.contactService.sendEmail(formData);
+      
+      if (result.success) {
+        this.showMessage(result.message, 'success');
+        this.contactForm.reset();
+      } else {
+        this.showMessage(result.message, 'error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      this.showMessage('An unexpected error occurred. Please try again.', 'error');
+    } finally {
+      this.isSubmitting = false;
+    }
+  }
+
+  private showMessage(text: string, type: 'success' | 'error'): void {
+    this.message = text;
+    this.messageType = type;
+    
+    // Auto-hide message after 5 seconds
+    setTimeout(() => {
+      this.clearMessage();
+    }, 5000);
+  }
+
+  private clearMessage(): void {
+    this.message = '';
+    this.messageType = '';
   }
 
   getFieldError(fieldName: string): string {
     const field = this.contactForm.get(fieldName);
-    if (field && field.errors && field.touched) {
+    if (field?.errors && field.touched) {
       if (field.errors['required']) {
         return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
       }
@@ -90,7 +125,6 @@ export class ContactComponent implements OnInit {
   }
 
   scrollToContact(): void {
-    // Scroll to the contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
       contactForm.scrollIntoView({ behavior: 'smooth' });
@@ -98,7 +132,6 @@ export class ContactComponent implements OnInit {
   }
 
   scrollToEducation(): void {
-    // Scroll to the about section which contains education info
     const aboutSection = document.querySelector('.about-me');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
