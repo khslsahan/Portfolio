@@ -1,58 +1,78 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
-import { PerformanceService } from '../../services/performance.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
   @Output() scrollToSection = new EventEmitter<string>();
   
   isMenuOpen = false;
-  currentTheme = 'light';
-  isLoading = false;
+  currentTheme = 'dark';
+  private themeSubscription: Subscription | undefined;
 
-  constructor(
-    private themeService: ThemeService,
-    private performanceService: PerformanceService
-  ) {}
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
-    this.themeService.getTheme().subscribe(theme => {
-      this.currentTheme = theme;
-    });
-    
-    // Subscribe to loading state
-    this.performanceService.getLoadingState().subscribe(loading => {
-      this.isLoading = loading;
-    });
+    try {
+      this.themeSubscription = this.themeService.getTheme().subscribe({
+        next: (theme) => {
+          this.currentTheme = theme;
+        },
+        error: (error) => {
+          console.error('Error getting theme:', error);
+          this.currentTheme = 'dark'; // Fallback
+        }
+      });
+    } catch (error) {
+      console.error('Error in navigation init:', error);
+      this.currentTheme = 'dark'; // Fallback
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.themeSubscription) {
+      this.themeSubscription.unsubscribe();
+    }
   }
 
   toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    try {
+      this.isMenuOpen = !this.isMenuOpen;
+    } catch (error) {
+      console.error('Error toggling menu:', error);
+      this.isMenuOpen = false; // Reset to safe state
+    }
   }
 
   closeMenu() {
-    this.isMenuOpen = false;
+    try {
+      this.isMenuOpen = false;
+    } catch (error) {
+      console.error('Error closing menu:', error);
+      this.isMenuOpen = false; // Reset to safe state
+    }
   }
 
   onScrollToSection(sectionId: string) {
-    // Start performance monitoring
-    const startTime = this.performanceService.startNavigation();
-    
-    // Emit scroll event
-    this.scrollToSection.emit(sectionId);
-    this.closeMenu();
-    
-    // End performance monitoring
-    setTimeout(() => {
-      this.performanceService.endNavigation(startTime);
-    }, 100);
+    try {
+      // Emit scroll event
+      this.scrollToSection.emit(sectionId);
+      this.closeMenu();
+    } catch (error) {
+      console.error('Error scrolling to section:', error);
+      this.closeMenu(); // Ensure menu is closed
+    }
   }
 
   toggleTheme() {
-    this.themeService.toggleTheme();
+    try {
+      this.themeService.toggleTheme();
+    } catch (error) {
+      console.error('Error toggling theme:', error);
+    }
   }
 }

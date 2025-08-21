@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material Modules - Only essential ones for performance
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
 
-// Components
+// Components - All main components
 import { AppComponent } from './app.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
@@ -19,15 +18,16 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ProjectCardComponent } from './components/project-card/project-card.component';
-import { SkillBadgeComponent } from './components/skill-badge/skill-badge.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
-// Services
-import { ProjectService } from './services/project.service';
+// Shared Module
+import { SharedModule } from './components/shared/shared.module';
+
+// Services - Only essential ones
 import { ThemeService } from './services/theme.service';
-import { PerformanceService } from './services/performance.service';
-import { AosOptimizerService } from './services/aos-optimizer.service';
-import { ConsoleMonitorService } from './services/console-monitor.service';
+
+// Routing
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -39,25 +39,21 @@ import { ConsoleMonitorService } from './services/console-monitor.service';
     ContactComponent,
     FooterComponent,
     NavigationComponent,
-    ProjectCardComponent,
-    SkillBadgeComponent
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatButtonModule,
-    MatCardModule,
     MatIconModule,
-    MatProgressBarModule
+    MatCardModule,
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [
-    ProjectService,
-    ThemeService,
-    PerformanceService,
-    AosOptimizerService,
-    ConsoleMonitorService
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })
