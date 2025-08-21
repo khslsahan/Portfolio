@@ -105,6 +105,12 @@
             "outputPath": "dist/portfolio",
             "baseHref": "/Portfolio/"
           }
+        },
+        "deploy-gh": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/Portfolio/"
+          }
         }
       }
     }
